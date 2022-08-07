@@ -14,18 +14,84 @@ import '../box-styles.css'
 // 🐨 also use the style prop to make the font italic
 // 💰 Here are available style attributes: backgroundColor, fontStyle
 
-const smallBox = <div>small lightblue box</div>
-const mediumBox = <div>medium pink box</div>
-const largeBox = <div>large orange box</div>
+const smallBox = 'small lightblue box'
+const mediumBox = 'medium pink box'
+const largeBox = 'large orange box'
 
-function App() {
+// Extra Credit 1
+// const Box = props => {
+//   return (
+//     <div
+//       className={props.className}
+//       style={{fontStyle: 'italic', ...props.style}}
+//     >
+//       {props.children}
+//     </div>
+//   )
+// }
+
+// function App() {
+//   return (
+//     <div className="box">
+//       <Box className="box--small" style={{backgroundColor: 'lightblue'}}>
+//         {smallBox}
+//       </Box>
+//       <Box className="box--medium" style={{backgroundColor: 'pink'}}>
+//         {mediumBox}
+//       </Box>
+//       <Box className="box--large" style={{backgroundColor: 'orange'}}>
+//         {largeBox}
+//       </Box>
+//     </div>
+//   )
+// }
+
+// extra credit 2
+const Box = props => {
+  const boxSize = () => {
+    switch (props.size) {
+      case 'small':
+        return 'box box--small'
+      case 'medium':
+        return 'box box--medium'
+      case 'large':
+        return 'box box--large'
+      default:
+        return 'box box--small'
+    }
+  }
+
   return (
-    <div>
-      {smallBox}
-      {mediumBox}
-      {largeBox}
+    <div className={boxSize()} style={{fontStyle: 'italic', ...props.style}}>
+      {props.children}
     </div>
   )
 }
+
+function App() {
+  return (
+    <div className="box">
+      <Box size="small" style={{backgroundColor: 'lightblue'}}>
+        {smallBox}
+      </Box>
+      <Box size="medium" style={{backgroundColor: 'pink'}}>
+        {mediumBox}
+      </Box>
+      <Box size="large" style={{backgroundColor: 'orange'}}>
+        {largeBox}
+      </Box>
+    </div>
+  )
+}
+
+// function App() {
+//   return (
+//     <div className="box">
+//       {smallBox}
+//       {mediumBox}
+//       {largeBox}
+//     </div>
+//   )
+// }
 
 export default App
